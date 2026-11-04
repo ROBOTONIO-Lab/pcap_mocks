@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>PCAP · Επανάληψη Block 1 + M2.1–2.2 · ROBOTONIO-Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0b2545;--navy-2:#13315c;--navy-3:#1d4e89;--gold:#ffd43b;--gold-deep:#d8a200;--paper:#eef2f9;--card:#fff;--ink:#0b2545;--muted:#5b6b85;--line:#dde4f1;--green:#1a7f5a;--green-bg:#e7f6ef;--red:#c0392b;--gold-bg:#fff7d6;--radius:14px;--shadow:0 1px 3px rgba(11,37,69,.08),0 8px 24px rgba(11,37,69,.06)}
+*{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font-family:'Sora',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+.masthead{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.masthead::after{content:"";position:absolute;inset:0;background:radial-gradient(1200px 200px at 80% -40%,rgba(255,212,59,.18),transparent 70%)}
+.masthead .wrap{position:relative;max-width:1180px;margin:0 auto;padding:30px 24px 26px}
+.eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600;margin:0 0 8px}
+h1{font-size:2rem;font-weight:800;margin:0;letter-spacing:-.02em} h1 .two{color:var(--gold)}
+.masthead p{margin:8px 0 0;color:#c3d0e6;font-size:.95rem;max-width:70ch}
+.plan{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.chip{font-size:.76rem;font-weight:600;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#dbe5f5} .chip b{color:var(--gold)}
+main{max-width:1180px;margin:0 auto;padding:24px}
+h2.sec{font-size:1.2rem;margin:26px 0 12px;display:flex;align-items:center;gap:12px} h2.sec::after{content:"";flex:1;height:1px;background:var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px}
+.card h2{font-size:1.05rem;margin:0 0 10px;display:flex;align-items:center;gap:10px}
+.tag{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;color:#fff;background:var(--navy);border-radius:7px;padding:3px 8px}
+.card ul{margin:0;padding-left:18px;font-size:.93rem} .card li{margin:0 0 7px} .card li::marker{color:var(--gold-deep)}
+code{font-family:'JetBrains Mono',monospace;font-size:.86em;background:#eef2f9;padding:1px 5px;border-radius:5px;color:var(--navy);white-space:nowrap}
+.minis{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px}
+.mini{background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px;cursor:pointer;transition:border-color .15s}
+.mini:hover{border-color:var(--navy-3)} .mini.open{border-color:var(--gold-deep)}
+.mini-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.mnum{font-family:'JetBrains Mono',monospace;font-weight:700;color:#fff;background:var(--navy);border-radius:8px;padding:3px 9px;font-size:.95rem}
+.hint{font-size:.72rem;color:var(--muted);font-weight:600} .mini.open .hint{visibility:hidden}
+pre.code{font-family:'JetBrains Mono',monospace;font-size:.92rem;line-height:1.5;background:var(--navy);color:#e8eefb;border-radius:10px;padding:12px 14px;margin:0;overflow-x:auto;white-space:pre}
+.ans{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px}
+pre.out{font-family:'JetBrains Mono',monospace;font-size:.95rem;background:var(--green-bg);color:var(--green);border-radius:8px;padding:10px 12px;margin:0 0 8px;white-space:pre}
+.exc{color:var(--red);font-weight:700} .ans p{margin:0;font-size:.9rem;color:#5c4a12;background:var(--gold-bg);border:1px solid #f2d98a;border-radius:8px;padding:8px 12px}
+.toolbar{display:flex;gap:10px;margin:12px 0 0}
+.btn{font-family:'Sora';font-weight:700;font-size:.85rem;border:1.5px solid var(--line);background:#fff;color:var(--navy);border-radius:10px;padding:9px 16px;cursor:pointer} .btn:hover{border-color:var(--navy-3)}
+[hidden]{display:none!important}
+@media print{.masthead{-webkit-print-color-adjust:exact;print-color-adjust:exact} .mini .ans{display:block!important} .hint,.toolbar{display:none}}
+@media (max-width:560px){h1{font-size:1.5rem} main{padding:16px} .grid,.minis{grid-template-columns:1fr}}
+</style></head><body>
+<header class="masthead"><div class="wrap">
+ <p class="eyebrow">ROBOTONIO-Lab · Πιστοποίηση PCAP-31-03</p>
+ <h1>Επανάληψη <span class="two">Block 1</span> + Μαθήματα <span class="two">2.1–2.2</span></h1>
+ <p>Οι παγίδες των quiz 1.1–2.2 σε μία σελίδα, και 8 μίνι «τι τυπώνει;» για τον πίνακα. Μετά: mock 30 ερωτήσεων / 45'.</p>
+ <div class="plan"><span class="chip"><b>10'</b> παγίδες Block 1</span><span class="chip"><b>8'</b> παγίδες 2.1–2.2</span><span class="chip"><b>7'</b> τι τυπώνει; στον πίνακα</span><span class="chip">σύνολο <b>25'</b></span></div>
+</div></header>
+<main>
+ <h2 class="sec">Παγίδες ανά θέμα</h2>
+ <div class="grid">
+<section class="card"><h2><span class="tag">1.1</span>import — 4 μορφές</h2><ul><li><code>import math</code> → χρήση <code>math.sqrt</code>. <code>from math import sqrt</code> → σκέτο <code>sqrt</code>. <code>from math import *</code> → όλα σκέτα (κίνδυνος συγκρούσεων).</li><li><code>import math as m</code> → υπάρχει <b>μόνο</b> το <code>m</code>. Το <code>math</code> → NameError.</li><li><code>from math import sqrt as s</code> → μόνο <code>s</code>, όχι <code>sqrt</code>.</li><li><code>dir(math)</code> → λίστα ονομάτων του module. <code>math.__name__</code> → <code>&#x27;math&#x27;</code>.</li><li>Τα ορίσματα του <code>print</code> υπολογίζονται <b>όλα</b> πριν τυπωθεί οτιδήποτε → μια εξαίρεση στο δεύτερο όρισμα ακυρώνει και το πρώτο.</li></ul></section>
+<section class="card"><h2><span class="tag">1.2</span>math — προσοχή στο πρόσημο</h2><ul><li><code>floor</code> → −∞ · <code>ceil</code> → +∞ · <code>trunc</code> / <code>int()</code> → προς το 0.</li><li>Θετικοί: floor = trunc. <b>Αρνητικοί:</b> <code>floor(-2.5)</code> = −3 αλλά <code>trunc(-2.5)</code> = −2.</li><li><code>sqrt</code>, <code>hypot</code> επιστρέφουν <b>float</b> (<code>hypot(3, 4)</code> → 5.0). <code>factorial(4)</code> → 24.</li><li><code>pi</code>, <code>e</code> είναι σταθερές (όχι συναρτήσεις): <code>math.pi</code>, όχι <code>math.pi()</code>.</li></ul></section>
+<section class="card"><h2><span class="tag">1.2</span>random — ψευδοτυχαίο</h2><ul><li><code>seed(n)</code> → ίδια ακολουθία κάθε φορά. Χωρίς seed → από το ρολόι.</li><li><code>randint(a, b)</code> → και τα δύο άκρα. <code>randrange(a, b)</code> → <b>έως b−1</b>, όπως το <code>range</code>. <code>randrange(1, 10, 3)</code> → 1, 4, 7.</li><li><code>random()</code> → float στο [0, 1). <code>choice(seq)</code> → ένα στοιχείο. <code>sample(seq, k)</code> → k διαφορετικά, νέα λίστα. <code>shuffle(list)</code> → επί τόπου, επιστρέφει None.</li></ul></section>
+<section class="card"><h2><span class="tag">1.2</span>platform — τι επιστρέφει τι</h2><ul><li><code>python_version()</code> → <code>&#x27;3.12.3&#x27;</code> (string). <code>python_version_tuple()</code> → <code>(&#x27;3&#x27;, &#x27;12&#x27;, &#x27;3&#x27;)</code> (tuple από <b>strings</b>).</li><li><code>python_implementation()</code> → <code>&#x27;CPython&#x27;</code>. <code>system()</code> → <code>&#x27;Windows&#x27;</code> / <code>&#x27;Linux&#x27;</code>. <code>version()</code> → έκδοση <b>λειτουργικού</b>, όχι Python.</li><li><code>machine()</code> → αρχιτεκτονική (<code>&#x27;AMD64&#x27;</code>). <code>platform()</code> → όλα μαζί σε ένα string.</li></ul></section>
+<section class="card"><h2><span class="tag">1.3</span>Δικά μας modules &amp; packages</h2><ul><li>Το <code>import</code> <b>εκτελεί</b> το module, <b>μία φορά</b>. Δεύτερο import = τίποτα.</li><li><code>__name__</code>: <code>&quot;__main__&quot;</code> μόνο στο αρχείο που τρέχουμε· στο module είναι το όνομά του.</li><li><code>from mod import x</code> αντιγράφει την <b>τρέχουσα</b> τιμή του x. Αλλαγές μετά δεν φαίνονται στο αντίγραφο.</li><li>Πακέτο = φάκελος με <code>__init__.py</code> (τρέχει στο πρώτο άγγιγμα του πακέτου). <code>import pkg.mod</code> → χρήση <code>pkg.mod.f()</code>, ποτέ σκέτο <code>mod</code>. <code>from pkg import mod</code> → σκέτο <code>mod.f()</code>.</li><li><code>sys.path</code>: λίστα φακέλων αναζήτησης, πρώτος ο φάκελος του script. <code>__pycache__</code>/<code>.pyc</code>: αυτόματο cache bytecode, όχι κρυπτογράφηση.</li></ul></section>
+<section class="card"><h2><span class="tag">1.4</span>pip &amp; PyPI</h2><ul><li><code>pip install NAME</code> · <code>pip install NAME==1.2.3</code> (ακριβής έκδοση, <b>διπλό</b> ίσον) · <code>pip install -U NAME</code> = <code>--upgrade</code>.</li><li><code>pip show NAME</code> → πληροφορίες (Version, Location). <code>pip list</code> → όλα τα εγκατεστημένα. <code>pip uninstall NAME</code>.</li><li><code>pip install -r requirements.txt</code> → από αρχείο. <code>pip --version</code> → έκδοση του pip, όχι του πακέτου.</li></ul></section>
+<section class="card"><h2><span class="tag">2.1</span>try / except / else / finally</h2><ul><li>Ροή: try → (except <b>ή</b> else) → finally. Μετά την εξαίρεση, οι υπόλοιπες γραμμές του try <b>παραλείπονται</b>.</li><li>Τα except ελέγχονται <b>με τη σειρά</b>, εκτελείται μόνο το πρώτο που ταιριάζει. Γονιός πριν από παιδί = το παιδί νεκρός κώδικας.</li><li><code>except (A, B):</code> → tuple. Σκέτο <code>except:</code> = <code>except BaseException:</code> και επιτρέπεται <b>μόνο τελευταίο</b> (αλλιώς SyntaxError).</li><li><code>return</code> μέσα στο try → φεύγουμε, το else δεν τρέχει, το finally <b>τρέχει</b>. <code>return</code> μέσα σε finally «καταπίνει» την εξαίρεση.</li><li>Εξαίρεση μέσα σε except → <b>δεν</b> την πιάνουν τα αδελφά except. Εσωτερικό try χωρίς ταίριασμα → η εξαίρεση ανεβαίνει στο εξωτερικό.</li></ul></section>
+<section class="card"><h2><span class="tag">2.1</span>Ιεραρχία εξαιρέσεων</h2><ul><li><code>BaseException</code> → <code>Exception</code> → <code>ArithmeticError</code> (ZeroDivisionError, OverflowError) · <code>LookupError</code> (IndexError, KeyError) · ValueError · TypeError · AssertionError.</li><li><code>SystemExit</code>, <code>KeyboardInterrupt</code> κρέμονται <b>απευθείας</b> από το BaseException → το <code>except Exception</code> δεν τα πιάνει.</li><li>Λίστα/λάθος θέση → IndexError. Λεξικό/λάθος κλειδί → KeyError. Κακό κείμενο στο int() → ValueError. Κακός τύπος → TypeError. Άγνωστο όνομα → NameError.</li><li>Το traceback δείχνει πάντα την <b>πραγματική</b> κλάση (το παιδί), ακόμα κι αν θα την έπιανε ο γονιός.</li></ul></section>
+<section class="card"><h2><span class="tag">2.2</span>raise · assert · δικές μας εξαιρέσεις</h2><ul><li><code>raise ValueError</code> = <code>raise ValueError()</code>. <code>raise &quot;text&quot;</code> → TypeError. Σκέτο <code>raise</code> μέσα σε except → ξαναστέλνει την ίδια· έξω από except → RuntimeError.</li><li>Η εξαίρεση <b>διαδίδεται</b>: διακόπτει κάθε συνάρτηση στη διαδρομή, στη γραμμή της κλήσης, μέχρι να βρει except που ταιριάζει. Αν πιαστεί, το πρόγραμμα συνεχίζει (ο βρόχος προχωρά).</li><li><code>assert συνθήκη, &quot;μήνυμα&quot;</code> → AssertionError αν ψευδής. Μήνυμα προαιρετικό. Πιάνεται από <code>except Exception</code>. Με <code>python -O</code> αγνοείται → <b>όχι</b> για έλεγχο εισόδου.</li><li><code>class MyError(Exception): pass</code> → έτοιμη. Χωρίς γονιό (<code>class MyError: pass</code>) → TypeError στο raise. Ακολουθεί τους ίδιους κανόνες ιεραρχίας.</li></ul></section>
+ </div>
+ <h2 class="sec">Τι τυπώνει; — πρώτα ψηφίζει η τάξη, μετά κλικ</h2>
+ <div class="toolbar"><button class="btn" id="showAll">Εμφάνιση όλων</button><button class="btn" id="hideAll">Απόκρυψη όλων</button></div>
+ <div class="minis" style="margin-top:12px">
+<div class="mini" data-answer="-1 0" tabindex="0" role="button">
+   <div class="mini-head"><span class="mnum">01</span><span class="hint">κλικ για απάντηση</span></div>
+   <pre class="code">from math import floor as f
+print(f(-0.5), int(-0.5))</pre>
+   <div class="ans" hidden><pre class="out">-1 0
+</pre><p>floor → −∞, int → 0. Στους αρνητικούς διαφέρουν.</p></div>
+ </div>
+<div class="mini" data-answer="True" tabindex="0" role="button">
+   <div class="mini-head"><span class="mnum">02</span><span class="hint">κλικ για απάντηση</span></div>
+   <pre class="code">import random
+random.seed(3)
+x = random.choice(&quot;abc&quot;)
+random.seed(3)
+print(x == random.choice(&quot;abc&quot;))</pre>
+   <div class="ans" hidden><pre class="out">True
+</pre><p>Ίδιο seed → ίδια ακολουθία.</p></div>
+ </div>
+<div class="mini" data-answer="A a
+M __main__" tabindex="0" role="button">
+   <div class="mini-head"><span class="mnum">03</span><span class="hint">κλικ για απάντηση</span></div>
+   <pre class="code"># a.py
+print(&quot;A&quot;, __name__)
+
+# main.py
+import a
+import a
+print(&quot;M&quot;, __name__)</pre>
+   <div class="ans" hidden><pre class="out">A a
+M __main__
+</pre><p>Το module τρέχει μία φορά, με __name__ = &quot;a&quot;. Μόνο το main έχει __main__.</p></div>
+ </div>
+<div class="mini" data-answer="x o f" tabindex="0" role="button">
+   <div class="mini-head"><span class="mnum">04</span><span class="hint">κλικ για απάντηση</span></div>
+   <pre class="code">try:
+    print(&quot;x&quot;, end=&quot; &quot;)
+    int(&quot;1&quot;)
+except ValueError:
+    print(&quot;e&quot;, end=&quot; &quot;)
+else:
+    print(&quot;o&quot;, end=&quot; &quot;)
+finally:
+    print(&quot;f&quot;)</pre>
+   <div class="ans" hidden><pre class="out">x o f
+</pre><p>Χωρίς εξαίρεση: try → else → finally. Το except παραλείπεται.</p></div>
+ </div>
+<div class="mini" data-answer="L" tabindex="0" role="button">
+   <div class="mini-head"><span class="mnum">05</span><span class="hint">κλικ για απάντηση</span></div>
+   <pre class="code">try:
+    {}[&quot;a&quot;]
+except IndexError:
+    print(&quot;I&quot;)
+except LookupError:
+    print(&quot;L&quot;)</pre>
+   <div class="ans" hidden><pre class="out">L
+</pre><p>Λεξικό → KeyError. Δεν είναι IndexError, αλλά είναι LookupError (γονιός).</p></div>
+ </div>
+<div class="mini" data-answer="fin 1" tabindex="0" role="button">
+   <div class="mini-head"><span class="mnum">06</span><span class="hint">κλικ για απάντηση</span></div>
+   <pre class="code">def f():
+    try:
+        return 1
+    finally:
+        print(&quot;fin&quot;, end=&quot; &quot;)
+
+print(f())</pre>
+   <div class="ans" hidden><pre class="out">fin 1
+</pre><p>Το finally τρέχει πριν «φύγει» το return.</p></div>
+ </div>
+<div class="mini" data-answer="⟶ AssertionError" tabindex="0" role="button">
+   <div class="mini-head"><span class="mnum">07</span><span class="hint">κλικ για απάντηση</span></div>
+   <pre class="code">x = 5
+assert x &gt; 10, &quot;small&quot;
+print(&quot;ok&quot;)</pre>
+   <div class="ans" hidden><pre class="out"><span class="exc">AssertionError</span></pre><p>Ψευδής συνθήκη → AssertionError: small. Το ok δεν τυπώνεται.</p></div>
+ </div>
+<div class="mini" data-answer="E caught" tabindex="0" role="button">
+   <div class="mini-head"><span class="mnum">08</span><span class="hint">κλικ για απάντηση</span></div>
+   <pre class="code">class E(Exception):
+    pass
+
+try:
+    raise E
+except Exception:
+    print(&quot;E caught&quot;)</pre>
+   <div class="ans" hidden><pre class="out">E caught
+</pre><p>Παιδί του Exception → το πιάνει το except Exception. raise E χωρίς παρενθέσεις είναι έγκυρο.</p></div>
+ </div>
+ </div>
+</main>
+<script>
+document.querySelectorAll('.mini').forEach(m=>{
+  const t=()=>{const a=m.querySelector('.ans');a.hidden=!a.hidden;m.classList.toggle('open',!a.hidden);};
+  m.addEventListener('click',t);
+  m.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t();}});
+});
+document.getElementById('showAll').onclick=()=>document.querySelectorAll('.mini').forEach(m=>{m.querySelector('.ans').hidden=false;m.classList.add('open');});
+document.getElementById('hideAll').onclick=()=>document.querySelectorAll('.mini').forEach(m=>{m.querySelector('.ans').hidden=true;m.classList.remove('open');});
+</script></body></html>
