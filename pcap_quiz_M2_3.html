@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>PCAP 2026-27 · Κουίζ M2.3 — αντικείμενα εξαιρέσεων · as e · args | ROBOTONIO-Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0b2545; --navy-2:#13315c; --navy-3:#1d4a7a;
+    --gold:#ffd43b; --gold-dim:#c9a227;
+    --paper:#f4f6fa; --card:#ffffff; --ink:#111827; --muted:#5b6474; --line:#d9dee8;
+    --ok:#1f8a4c; --ok-bg:#e8f6ee; --bad:#c0392b; --bad-bg:#fbeae8;
+    --sans:"Sora",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55}
+  header{background:var(--navy);color:#fff;padding:2.2rem 1.25rem 1.8rem}
+  header .wrap{max-width:900px;margin:0 auto}
+  header h1{margin:0 0 .35rem;font-size:1.7rem;font-weight:700}
+  header p{margin:0;color:#c9d3e3}
+  header .tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:.8rem;padding:.2rem .6rem;border-radius:999px;margin-bottom:.8rem}
+  .status{position:sticky;top:0;z-index:10;background:var(--navy-2);color:#fff;border-bottom:3px solid var(--gold)}
+  .status .wrap{max-width:900px;margin:0 auto;padding:.6rem 1.25rem;display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap;font-size:.92rem}
+  .status .score{font-family:var(--mono);font-weight:600;color:var(--gold)}
+  .status input{font-family:var(--sans);font-size:.92rem;padding:.35rem .6rem;border:1px solid #3d5a86;border-radius:6px;background:#0b2545;color:#fff;min-width:200px}
+  .status input::placeholder{color:#8fa3c4}
+  main{max-width:900px;margin:0 auto;padding:1.5rem 1.25rem 4rem}
+  .q{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.3rem 1.4rem;margin-bottom:1.2rem}
+  .q .num{font-family:var(--mono);color:var(--gold-dim);font-weight:600;font-size:.85rem}
+  .q .stem{margin:.3rem 0 .8rem;font-weight:600}
+  pre{background:var(--navy);color:#e6edf7;font-family:var(--mono);font-size:.92rem;padding:.9rem 1rem;border-radius:8px;overflow:auto;margin:0 0 .9rem;line-height:1.5}
+  .opts{display:grid;gap:.5rem;margin-bottom:.9rem}
+  .opt{display:flex;gap:.7rem;align-items:flex-start;padding:.6rem .8rem;border:1px solid var(--line);border-radius:8px;cursor:pointer;background:#fafbfd}
+  .opt:hover{border-color:var(--navy-3)}
+  .opt input{margin-top:.25rem}
+  .opt code{font-family:var(--mono);font-size:.9rem}
+  .opt.correct{background:var(--ok-bg);border-color:var(--ok)}
+  .opt.wrong{background:var(--bad-bg);border-color:var(--bad)}
+  .q.locked .opt{cursor:default}
+  button{font-family:var(--sans);font-weight:600;border:0;border-radius:8px;padding:.55rem 1rem;cursor:pointer}
+  .check{background:var(--navy);color:#fff}
+  .check:disabled{background:#9aa5b8;cursor:default}
+  .verdict{margin-top:.7rem;font-weight:600}
+  .verdict.ok{color:var(--ok)} .verdict.bad{color:var(--bad)}
+  .expl{display:none;margin-top:.9rem;border-top:1px dashed var(--line);padding-top:.9rem;font-size:.95rem}
+  .expl h4{margin:.5rem 0 .2rem;font-size:.9rem;color:var(--navy-3)}
+  .expl p{margin:0 0 .3rem}
+  .trap{background:#fff8dc;border-left:4px solid var(--gold);padding:.6rem .8rem;border-radius:6px;margin-top:.7rem}
+  .badge{display:inline-block;font-size:.72rem;font-family:var(--mono);color:var(--ok);border:1px solid var(--ok);border-radius:999px;padding:.05rem .5rem;margin-left:.5rem}
+  .submit{background:var(--gold);color:var(--navy);font-size:1.05rem;padding:.8rem 1.6rem;width:100%;margin-top:.5rem}
+  .final{display:none;background:var(--navy);color:#fff;border-radius:12px;padding:1.5rem;margin-top:1.2rem;text-align:center}
+  .final .big{font-family:var(--mono);font-size:2.6rem;color:var(--gold);font-weight:600}
+  .final .pass{color:#7ee2a5;font-weight:700} .final .fail{color:#ff9b8f;font-weight:700}
+  .note{font-size:.85rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <span class="tag">PCAP 2026-27 · Module 2 · Μάθημα 2.3</span>
+  <h1>Κουίζ M2.3 — αντικείμενα εξαιρέσεων · as e · args</h1>
+  <p>8 ερωτήσεις επιπέδου PCAP πάνω στο except … as e, το args, το str(e), τις δικές μας εξαιρέσεις με __init__ και τη ζωή του e. Απάντησε, πάτα «Έλεγχος» για εξήγηση, και στο τέλος «Υποβολή».</p>
+</div></header>
+
+<div class="status"><div class="wrap">
+  <span>Απαντημένες: <span class="score" id="done">0</span>/8</span>
+  <span>Σωστές: <span class="score" id="right">0</span></span>
+  <input id="name" placeholder="Όνομα μαθητή/τριας">
+</div></div>
+
+<main>
+  <div id="quiz"></div>
+  <button class="submit" id="submit">Υποβολή</button>
+  <div class="final" id="final"></div>
+  <p class="note" style="margin-top:1.5rem">Οι ερωτήσεις είναι πρωτότυπες, γραμμένες για το μάθημα. Κάθε απόσπασμα κώδικα έχει εκτελεστεί σε Python 3 πριν μπει εδώ.</p>
+</main>
+
+<script>
+const RESULTS_ENDPOINT = ""; // προαιρετικά: Apps Script URL
+const QUIZ_ID = "pcap_quiz_m2_3";
+const SEED = 20261694;
+
+const QUESTIONS = [
+{ code:"try:\n    int(\"4.5\")\nexcept ValueError as e:\n    print(type(e).__name__, \"|\", len(e.args))", stem:"What is the output?",
+  opts:["ValueError | 1", "ValueError | 0", "ValueError | 4.5", "The program ends with ValueError"], correct:0,
+  expl:{c:"Με <code>except ValueError as e</code> το όνομα <code>e</code> δείχνει στο <strong>αντικείμενο</strong> της εξαίρεσης. Το <code>type(e).__name__</code> δίνει το όνομα της κλάσης του και το <code>e.args</code> είναι tuple με τα ορίσματα της εξαίρεσης.",
+        s:"Το <code>int(\"4.5\")</code> δημιουργεί <code>ValueError</code> με ένα μήνυμα. Το <code>type(e).__name__</code> → <code>ValueError</code>. Το <code>e.args</code> έχει ένα στοιχείο, το μήνυμα, άρα <code>len(e.args)</code> → <code>1</code>.",
+        w:"Το <code>args</code> δεν είναι ποτέ η τιμή που απέτυχε (<code>4.5</code>): είναι τα ορίσματα της εξαίρεσης. Η εξαίρεση πιάνεται, άρα το πρόγραμμα δεν τερματίζει με σφάλμα. Το <code>0</code> θα ίσχυε μόνο για εξαίρεση χωρίς ορίσματα.",
+        t:"Οι έτοιμες εξαιρέσεις της Python έχουν σχεδόν πάντα ακριβώς ένα όρισμα: το μήνυμα."} },
+
+{ code:"try:\n    raise RuntimeError(\"a\", \"b\")\nexcept RuntimeError as e:\n    print(e.args[1], len(e.args), e)", stem:"What is the output?",
+  opts:["b 2 ('a', 'b')", "b 2 a", "b 2 a b", "a 2 ('a', 'b')"], correct:0,
+  expl:{c:"Το <code>args</code> είναι tuple με <strong>όλα</strong> τα ορίσματα που δόθηκαν στην εξαίρεση. Το <code>str(e)</code> με πολλά ορίσματα δίνει το tuple όπως τυπώνεται.",
+        s:"<code>raise RuntimeError(\"a\", \"b\")</code> → <code>e.args</code> είναι <code>('a', 'b')</code>. Άρα <code>e.args[1]</code> → <code>b</code>, <code>len(e.args)</code> → <code>2</code>, και <code>print(e)</code> → <code>('a', 'b')</code>.",
+        w:"Το <code>print(e)</code> δεν τυπώνει μόνο το πρώτο όρισμα, ούτε τα ενώνει με κενό: με δύο ή περισσότερα ορίσματα τυπώνει ολόκληρο το tuple. Το <code>e.args[1]</code> είναι το δεύτερο στοιχείο, <code>b</code>, όχι <code>a</code>.",
+        t:"Κανόνας του <code>str(e)</code>: 0 ορίσματα → <code>\"\"</code>, 1 όρισμα → το όρισμα, 2+ ορίσματα → το tuple."} },
+
+{ code:"try:\n    x = 1 / 0\nexcept ZeroDivisionError as e:\n    pass\nprint(e)", stem:"What happens when this program is run?",
+  opts:["The program ends with NameError", "division by zero is printed", "Nothing is printed and the program ends normally", "0 is printed"], correct:0,
+  expl:{c:"Το όνομα που δίνει το <code>as e</code> υπάρχει <strong>μόνο μέσα</strong> στο μπλοκ <code>except</code>. Μόλις το μπλοκ τελειώσει, η Python το διαγράφει.",
+        s:"Το <code>1 / 0</code> δημιουργεί <code>ZeroDivisionError</code>, το <code>except</code> την πιάνει και κάνει <code>pass</code>. Στο τέλος του μπλοκ το <code>e</code> σβήνεται. Το <code>print(e)</code> είναι έξω από το μπλοκ → <code>NameError: name 'e' is not defined</code>.",
+        w:"Το <code>division by zero</code> θα τυπωνόταν αν το <code>print(e)</code> ήταν μέσα στο <code>except</code>. Το <code>x</code> δεν πήρε ποτέ τιμή, αλλά το πρόγραμμα δεν φτάνει σε αυτό. Το <code>pass</code> δεν σημαίνει ότι η εξαίρεση «χάθηκε σιωπηλά»: πιάστηκε κανονικά, το πρόβλημα είναι η γραμμή μετά.",
+        t:"Αν θες την εξαίρεση και μετά το <code>except</code>, αντίγραψέ την σε άλλη μεταβλητή μέσα στο μπλοκ (π.χ. <code>saved = e</code>)."} },
+
+{ code:"try:\n    raise IndexError\nexcept IndexError as e:\n    print(\"[\" + str(e) + \"]\", e.args)", stem:"What is the output?",
+  opts:["[] ()", "[IndexError] ()", "[] (None,)", "[IndexError] ('IndexError',)"], correct:0,
+  expl:{c:"Μια εξαίρεση που δημιουργείται <strong>χωρίς ορίσματα</strong> έχει <code>args</code> ίσο με το κενό tuple <code>()</code> και <code>str()</code> ίσο με το κενό string.",
+        s:"<code>raise IndexError</code> είναι το ίδιο με <code>raise IndexError()</code>: κανένα όρισμα. Άρα <code>str(e)</code> → <code>\"\"</code> και το <code>\"[\" + str(e) + \"]\"</code> → <code>[]</code>. Το <code>e.args</code> → <code>()</code>.",
+        w:"Το <code>str(e)</code> δεν δίνει το όνομα της κλάσης· αυτό το δίνει το <code>type(e).__name__</code>. Το <code>args</code> δεν περιέχει <code>None</code> ούτε το όνομα της εξαίρεσης: είναι ακριβώς ό,τι δόθηκε στις παρενθέσεις, δηλαδή τίποτα.",
+        t:"<code>raise IndexError</code> και <code>raise IndexError()</code> είναι ισοδύναμα. Στο traceback η τελευταία γραμμή θα έγραφε σκέτο <code>IndexError</code>, χωρίς μήνυμα."} },
+
+{ code:"class LowBalance(Exception):\n    def __init__(self, amount):\n        super().__init__(\"balance below \" + str(amount))\n        self.amount = amount\n\ntry:\n    raise LowBalance(10)\nexcept LowBalance as e:\n    print(e.amount, e)", stem:"What is the output?",
+  opts:["10 balance below 10", "balance below 10 10", "10 10", "The program ends with AttributeError"], correct:0,
+  expl:{c:"Μια δική μας εξαίρεση μπορεί να έχει <code>__init__</code>. Με <code>super().__init__(μήνυμα)</code> δίνουμε το μήνυμα στο <code>Exception</code> (γίνεται το <code>args</code> και το <code>str(e)</code>), και με <code>self.x = ...</code> αποθηκεύουμε επιπλέον δεδομένα μέσα στο αντικείμενο.",
+        s:"<code>raise LowBalance(10)</code> → καλείται ο <code>__init__</code> με <code>amount = 10</code>. Το <code>super().__init__(\"balance below 10\")</code> ορίζει το μήνυμα. Το <code>self.amount = 10</code>. Στο <code>except</code>: <code>e.amount</code> → <code>10</code>, <code>e</code> → <code>balance below 10</code>.",
+        w:"Η σειρά στο <code>print</code> είναι πρώτα <code>e.amount</code> και μετά <code>e</code>. Το <code>e.amount</code> υπάρχει, άρα όχι AttributeError. Το <code>print(e)</code> δεν τυπώνει το <code>10</code> σκέτο, γιατί το μήνυμα ορίστηκε με <code>super().__init__()</code>.",
+        t:"Χωρίς το <code>super().__init__(...)</code> το <code>args</code> θα ήταν <code>(10,)</code> και το <code>print(e)</code> θα τύπωνε <code>10</code>. Το <code>e.amount</code> θα υπήρχε και πάλι."} },
+
+{ code:"class A(Exception):\n    pass\n\nclass B(A):\n    pass\n\ntry:\n    raise B(\"hi\")\nexcept A as e:\n    print(type(e).__name__, e)", stem:"What is the output?",
+  opts:["B hi", "A hi", "B", "The program ends with B"], correct:0,
+  expl:{c:"Ο γονιός στο <code>except</code> πιάνει τα παιδιά του, αλλά το αντικείμενο <code>e</code> είναι <strong>αυτό που δημιουργήθηκε</strong>: το παιδί, όχι ο γονιός.",
+        s:"<code>raise B(\"hi\")</code> φτιάχνει αντικείμενο της κλάσης <code>B</code>. Το <code>except A</code> ταιριάζει, γιατί <code>B</code> είναι παιδί της <code>A</code>. Το <code>type(e).__name__</code> → <code>B</code>, και το <code>print(e)</code> → <code>hi</code>.",
+        w:"Το <code>except A</code> δεν «μετατρέπει» την εξαίρεση σε <code>A</code>: το <code>e</code> παραμένει <code>B</code>. Το μήνυμα <code>hi</code> τυπώνεται κανονικά, γιατί η <code>B</code> κληρονομεί τη συμπεριφορά του <code>Exception</code>. Η εξαίρεση πιάνεται, δεν υπάρχει traceback.",
+        t:"<code>isinstance(e, A)</code> → True και <code>isinstance(e, B)</code> → True, αλλά <code>type(e) is A</code> → False."} },
+
+{ code:"d = {}\ntry:\n    d[\"k\"]\nexcept KeyError as e:\n    print(e, e.args)", stem:"What is the output?",
+  opts:["'k' ('k',)", "k ('k',)", "k k", "KeyError: 'k'"], correct:0,
+  expl:{c:"Το <code>KeyError</code> είναι η εξαίρεση με τη μικρή ιδιαιτερότητα: το <code>str()</code> του δείχνει το κλειδί <strong>με τα εισαγωγικά του</strong>, όπως το <code>repr()</code>. Το <code>args</code> όμως είναι κανονικό tuple.",
+        s:"<code>d[\"k\"]</code> σε κενό λεξικό → <code>KeyError</code> με όρισμα το κλειδί <code>\"k\"</code>. Το <code>print(e)</code> → <code>'k'</code> (με τα μονά εισαγωγικά). Το <code>e.args</code> → <code>('k',)</code>.",
+        w:"Σε κάθε άλλη εξαίρεση το <code>print(e)</code> θα έδινε <code>k</code> χωρίς εισαγωγικά· εδώ όχι. Η γραμμή <code>KeyError: 'k'</code> είναι αυτό που θα έγραφε το traceback, όχι το <code>print(e)</code>. Το <code>args</code> είναι tuple, όχι σκέτο <code>k</code>.",
+        t:"Στο traceback το <code>KeyError: 'k'</code> και το <code>ValueError: k</code> δείχνουν αυτή ακριβώς τη διαφορά. Το <code>e.args[0]</code> είναι <code>k</code> και στις δύο περιπτώσεις."} },
+
+{ code:"e = ValueError(\"x\")\nprint(isinstance(e, Exception), e.args)\ntry:\n    raise e\nexcept Exception as err:\n    print(err is e)", stem:"What is the output?",
+  opts:["True ('x',)\nTrue", "True ('x',)\nFalse", "False ('x',)\nTrue", "The program ends with ValueError"], correct:0,
+  expl:{c:"Η εξαίρεση είναι ένα κανονικό αντικείμενο: μπορούμε να τη φτιάξουμε και να την αποθηκεύσουμε <strong>χωρίς</strong> <code>raise</code>. Το <code>raise</code> απλώς τη «στέλνει». Το <code>except ... as err</code> μας δίνει το <strong>ίδιο</strong> αντικείμενο.",
+        s:"<code>e = ValueError(\"x\")</code>: αντικείμενο <code>ValueError</code>, παιδί του <code>Exception</code> → <code>isinstance</code> True, <code>args</code> → <code>('x',)</code>. Το <code>raise e</code> στέλνει αυτό ακριβώς το αντικείμενο. Το <code>except Exception as err</code> το πιάνει, και <code>err is e</code> → <code>True</code>.",
+        w:"Το <code>raise</code> δεν φτιάχνει αντίγραφο: το <code>err</code> και το <code>e</code> είναι το ίδιο αντικείμενο, άρα όχι False. Το <code>isinstance</code> δεν μπορεί να είναι False: κάθε <code>ValueError</code> είναι <code>Exception</code>. Η εξαίρεση πιάνεται από το <code>except Exception</code>.",
+        t:"Το <code>raise ValueError</code> (χωρίς παρενθέσεις) φτιάχνει μόνο του ένα νέο αντικείμενο <code>ValueError()</code> τη στιγμή του raise."} }
+];
+
+// ---- seeded shuffle of options ----
+function rng(seed){ let s = seed; return () => { s = (s * 1664525 + 1013904223) % 4294967296; return s / 4294967296; }; }
+const rand = rng(SEED);
+QUESTIONS.forEach(q => {
+  const idx = q.opts.map((_, i) => i);
+  for (let i = idx.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1)); [idx[i], idx[j]] = [idx[j], idx[i]]; }
+  q.order = idx; // displayed position -> original index
+});
+
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const L = ["A","B","C","D"];
+const state = QUESTIONS.map(() => ({ answered:false, right:false }));
+
+function render(){
+  const root = document.getElementById("quiz");
+  root.innerHTML = QUESTIONS.map((q, qi) => `
+  <div class="q" id="q${qi}">
+    <div class="num">Q${qi+1} / 8 <span class="badge">✓ Επαληθεύτηκε με εκτέλεση</span></div>
+    <div class="stem">${q.stem}</div>
+    <pre>${esc(q.code)}</pre>
+    <div class="opts">
+      ${q.order.map((oi, pos) => `
+      <label class="opt" data-pos="${pos}">
+        <input type="radio" name="q${qi}" value="${oi}">
+        <span><strong>${L[pos]}.</strong> <code style="white-space:pre-wrap">${esc(q.opts[oi])}</code></span>
+      </label>`).join("")}
+    </div>
+    <button class="check" onclick="check(${qi})">Έλεγχος</button>
+    <div class="verdict" id="v${qi}"></div>
+    <div class="expl" id="e${qi}">
+      <h4>Έννοια</h4><p>${q.expl.c}</p>
+      <h4>Ανάλυση βήμα-βήμα</h4><p>${q.expl.s}</p>
+      <h4>Γιατί όχι τα άλλα</h4><p>${q.expl.w}</p>
+      ${q.expl.t ? `<div class="trap">📌 <strong>Παγίδες &amp; Προσοχή:</strong> ${q.expl.t}</div>` : ""}
+    </div>
+  </div>`).join("");
+}
+
+function check(qi){
+  const q = QUESTIONS[qi];
+  const el = document.getElementById("q"+qi);
+  const sel = el.querySelector("input:checked");
+  if(!sel){ document.getElementById("v"+qi).textContent = "Διάλεξε μια απάντηση πρώτα."; return; }
+  const chosen = +sel.value;
+  const ok = chosen === q.correct;
+  state[qi] = { answered:true, right:ok };
+  el.classList.add("locked");
+  el.querySelectorAll(".opt").forEach(lab => {
+    const oi = +lab.querySelector("input").value;
+    lab.querySelector("input").disabled = true;
+    if(oi === q.correct) lab.classList.add("correct");
+    else if(oi === chosen) lab.classList.add("wrong");
+  });
+  el.querySelector(".check").disabled = true;
+  const v = document.getElementById("v"+qi);
+  v.textContent = ok ? "✔ Σωστά!" : "✘ Λάθος.";
+  v.className = "verdict " + (ok ? "ok" : "bad");
+  document.getElementById("e"+qi).style.display = "block";
+  updateBar();
+}
+
+function updateBar(){
+  document.getElementById("done").textContent = state.filter(s => s.answered).length;
+  document.getElementById("right").textContent = state.filter(s => s.right).length;
+}
+
+document.getElementById("submit").addEventListener("click", () => {
+  QUESTIONS.forEach((_, qi) => { if(!state[qi].answered && document.querySelector(`#q${qi} input:checked`)) check(qi); });
+  const right = state.filter(s => s.right).length;
+  const pct = Math.round(right / QUESTIONS.length * 100);
+  const name = document.getElementById("name").value.trim() || "—";
+  const f = document.getElementById("final");
+  f.innerHTML = `<div>${esc(name)}</div><div class="big">${right}/8 · ${pct}%</div>
+    <div class="${pct >= 70 ? "pass" : "fail"}">${pct >= 70 ? "Το Module 2 είναι δικό σου 🧠" : "Ξαναδές το as e, το args και το str(e) — και μετά ξαναδοκίμασε πριν το Mock."}</div>`;
+  f.style.display = "block";
+  f.scrollIntoView({ behavior:"smooth" });
+  document.getElementById("submit").disabled = true;
+  if(RESULTS_ENDPOINT){
+    fetch(RESULTS_ENDPOINT, { method:"POST", mode:"no-cors", headers:{"Content-Type":"text/plain"},
+      body: JSON.stringify({ quiz:QUIZ_ID, name, score:right, total:QUESTIONS.length, pct, ts:new Date().toISOString() }) }).catch(()=>{});
+  }
+});
+
+render();
+</script>
+</body>
+</html>
